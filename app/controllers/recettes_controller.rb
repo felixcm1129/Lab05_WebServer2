@@ -27,7 +27,7 @@ class RecettesController < ApplicationController
         
         respond_to do |format|    
           if @recettes.save # Si la sauvegarde se passe bien, on redirige vers l'action index_5 pour rafraichir le formulaire
-            format.html {redirect_to '/'}
+            format.html {redirect_to '/mesrecettes'}
           else
             format.html {render 'new' } # Si une erreur arrive, on l'affiche sur le formulaire d'origine
           end
@@ -45,7 +45,7 @@ class RecettesController < ApplicationController
         
         respond_to do |format|    
           if @recettes.update(recette_params) # Si la sauvegarde se passe bien, on redirige vers l'action index_5 pour rafraichir le formulaire
-            format.html {redirect_to '/'}
+            format.html {redirect_to '/mesrecettes'}
           else
             format.html {render 'edit' } # Si une erreur arrive, on l'affiche sur le formulaire d'origine
           end
@@ -53,6 +53,10 @@ class RecettesController < ApplicationController
           format.json { render :json => @recettes.to_json }
           format.xml { render :xml => @recettes.as_json.to_xml }
         end
+    end
+
+    def get_recettes
+      @recettes = current_user.recettes
     end
 
     private
