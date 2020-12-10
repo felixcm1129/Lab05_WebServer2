@@ -1,0 +1,5 @@
+<h1> <%= @recettes.titre %> </h1>
+<b> Auteur: </b><%= @recettes.user.nom + " " + @recettes.user.prenom%><br />
+<b>Étapes:</b> <%= @recettes.etapes %> <br />
+<b>Ingrédients:</b> <% @recettes.ingredients.each do |i| %> <%= i.recette_ingredients[0].quantite.to_s + i.recette_ingredients[0].unite + " " + i.nom + ", " %>
+<% end %>
